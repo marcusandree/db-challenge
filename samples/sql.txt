@@ -1,0 +1,24 @@
+    Listar todos Clientes que não tenham realizado uma compra;
+
+select customer_id from customers where customer_id not in (select customer_id from orders_
+
+    Listar os Produtos que não tenham sido comprados
+
+select product_id from products where product_id not in (select product_id from order_items)
+
+    Listar os Produtos sem Estoque;
+
+select product_id from stocks where quantity = 0
+
+    Agrupar a quantidade de vendas que uma determinada Marca por Loja.
+
+select orders.storeid, sum(order_items.quantity), products.brand_id
+from orders
+inner join order_items on order.order_id = order_items.order_id
+inner join products on order_items.product_id = products.product_id
+group by products.brand_id
+
+   Listar os Funcionarios que não estejam relacionados a um Pedido.
+
+select staff_id  from staffs where staff_id not in (select staff_id from oders)
+
